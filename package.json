@@ -7,9 +7,9 @@
     "start": "npm-run-all --parallel open:src lint:watch test:watch",
     "open:src": "babel-node tools/srcServer.js",
     "lint": "esw webpack.config.* src tools",
-    "lint:watch": "yarn lint -- --watch",
+    "lint:watch": "npm run lint -- --watch",
     "test": "mocha --reporter progress tools/testSetup.js \"src/**/*.test.js\"",
-    "test:watch": "yarn test -- --watch"
+    "test:watch": "npm test -- --watch"
   },
   "author": "Cory House",
   "license": "MIT",
