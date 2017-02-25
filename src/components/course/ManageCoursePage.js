@@ -15,11 +15,12 @@ class ManageCoursePage extends React.Component {
   }
 
   render() {
+    const {authors} = this.props;
     const {course, errors} = this.state;
 
     return (
         <CourseForm
-            allAuthors={[]}
+            allAuthors={authors}
             course={course}
             errors={errors}
         />
@@ -28,14 +29,24 @@ class ManageCoursePage extends React.Component {
 }
 
 ManageCoursePage.propTypes = {
-  course : PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  authors: PropTypes.array.isRequired,
+  course : PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
   const course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
+
+  const formatAuthorsForSelectInput = state.authors.map(author => {
+    return {
+      value: author.id,
+      text: author.firstName + ' ' + author.lastName
+    };
+  });
+
   return {
-    course
+    course,
+    authors: formatAuthorsForSelectInput
   };
 }
 
